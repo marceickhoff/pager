@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Class Meta
+	 * Meta Manager
 	 */
 	class Meta {
 		private static $meta = array();

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Class Config
+	 * Config Manager
 	 */
 	abstract class Config {
 		/**

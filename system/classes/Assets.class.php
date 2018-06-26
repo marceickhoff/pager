@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Assets manager
+	 * Assets Manager
 	 */
 	class Assets {
 		/**

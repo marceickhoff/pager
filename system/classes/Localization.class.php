@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Localization manager
+	 * Localization Manager
 	 */
 	class Localization {
 		/**

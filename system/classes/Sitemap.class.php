@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Handles sitemap generation.
+	 * Sitemap Manager
 	 */
 	class Sitemap {
 		const file = 'sitemap.xml';

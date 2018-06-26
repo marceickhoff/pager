@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Request manager
+	 * Request Manager
 	 */
 	class Request {
 		/**

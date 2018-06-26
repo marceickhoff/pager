@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Template manager
+	 * Template Manager
 	 */
 	class Template {
 		/**

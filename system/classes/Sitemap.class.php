@@ -3,7 +3,7 @@
 	/**
 	 * Sitemap Manager
 	 */
-	class Sitemap {
+	abstract class Sitemap {
 		const file = 'sitemap.xml';
 
 		/**

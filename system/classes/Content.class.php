@@ -3,7 +3,7 @@
 	/**
 	 * Content Manager
 	 */
-	class Content {
+	abstract class Content {
 		/**
 		 * @var string Page file
 		 */

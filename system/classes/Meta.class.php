@@ -3,7 +3,7 @@
 	/**
 	 * Meta Manager
 	 */
-	class Meta {
+	abstract class Meta {
 		private static $meta = array();
 
 		/**

@@ -3,7 +3,7 @@
 	/**
 	 * Request Manager
 	 */
-	class Request {
+	abstract class Request {
 		/**
 		 * @var array Request
 		 */

@@ -3,7 +3,7 @@
 	/**
 	 * Localization Manager
 	 */
-	class Localization {
+	abstract class Localization {
 		/**
 		 * @var string Language code
 		 */

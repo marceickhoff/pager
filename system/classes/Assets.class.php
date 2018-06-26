@@ -3,7 +3,7 @@
 	/**
 	 * Assets Manager
 	 */
-	class Assets {
+	abstract class Assets {
 		/**
 		 * @var mixed[] Assets
 		 */

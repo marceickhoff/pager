@@ -3,7 +3,7 @@
 	/**
 	 * Template Manager
 	 */
-	class Template {
+	abstract class Template {
 		/**
 		 * @var string Current template name
 		 */

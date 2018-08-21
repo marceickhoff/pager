@@ -23,9 +23,13 @@ The `theme` directory contains reusable templates and template parts. All these 
 
 Pager doesn't enforce a specific location for stylesheets and other assets. Put them wherever you like. If you want to use a frontend framework like [Oak](https://github.com/marceickhoff/Oak) or [Bootstrap](https://getbootstrap.com/), just throw them in, link the stylesheets and scripts in your theme via the `Assets::add()` method and you're good to go.
 
+*Learn more about [Templates](https://github.com/marceickhoff/Pager#template) and [Assets](https://github.com/marceickhoff/Pager#assets).*
+
 ## Content
 
 The `content/pages` directory contains sub-directories named according to [RFC 5646](https://gist.github.com/msikma/8912e62ed866778ff8cd). These are your website's supported languages. By default you see only an `en` directory for the English language. The Localization Manager always tries to find the best language match based on the browser's `Accept-Language` HTTP header. If you only support `en` than this will be used for every visitor.
+
+*Learn more about [Requests](https://github.com/marceickhoff/Pager#request) and [Localization](https://github.com/marceickhoff/Pager#localization).*
 
 You can create directories for other content like images or videos inside the `content` directory.
 
@@ -33,7 +37,11 @@ You can create directories for other content like images or videos inside the `c
 
 Inside the language sub-directories you'll have your page content files. These files contain the actual content of your website. Page content is embedded into the theme via the `Content::get()` method in a template. For details see below.
 
+*Learn more about [Content](https://github.com/marceickhoff/Pager#content)*.
+
 You can set page-specific meta information via the `Meta::set()` method and embed custom assets (script, stylesheets, etc.) via the `Asset::add()` method. For details see below.
+
+*Learn more about [Meta information](https://github.com/marceickhoff/Pager#meta) and [Assets](https://github.com/marceickhoff/Pager#assets).*
 
 Page files are parsed before the template so you can even individually change the used template for each page via the `Template::set()` method.
 
@@ -43,9 +51,11 @@ You can also create custom directory structures inside the language sub-director
 
 Inside your language sub-directory you'll see another sub-directory. It's the `_error` directory. It contains page content files for different HTTP status codes. By default there is already a `404.php` file that is included if the servers HTTP response code is 404 (page not found). It works the same way as a regular page content file.
 
-### Config files
+### Configuration files
 
 Inside each directory inside the language sub-directory can (but doesn't have to) be a `_defaults.php` file that contains defaults like meta information or assets for its particular directory and all its children.
+
+*Learn more about [Config](https://github.com/marceickhoff/Pager#config).*
 
 # Class reference
 

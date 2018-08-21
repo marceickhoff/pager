@@ -1,4 +1,5 @@
-# Pager
+![Pager](https://raw.githubusercontent.com/marceickhoff/Pager/master/pager-logo.svg)
+
 Pager is a minimal PHP framework to easily build multilingual file-based websites. No database required. Ideal for smaller projects.
 
 ## Requirements

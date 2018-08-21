@@ -6,4 +6,5 @@
 			'default_localization_redirect' => false
 		]
 	);
+	define('BASE_PATH', Config::get('base_path'));
 ?>

@@ -1,4 +1,6 @@
-![Pager](https://raw.githubusercontent.com/marceickhoff/Pager/master/pager-logo.png)
+<p align="center">
+  <img alt="Pager" width="240" height="59" src="https://raw.githubusercontent.com/marceickhoff/Pager/master/pager-logo.png">
+</p>
 
 Pager is a minimal PHP framework to easily build multilingual file-based websites. No database required. Ideal for smaller projects.
 

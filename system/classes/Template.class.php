@@ -14,6 +14,7 @@
 		 */
 		public static function build() {
 			self::include_defaults(Content::file());
+			Content::get(); // Parse content before template
 			if (self::is_set()) {
 				include Template::file(); // Include template if set
 			}

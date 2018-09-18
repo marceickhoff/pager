@@ -35,7 +35,7 @@
 					$defaults_files[] = $file;
 				}
 			} while (array_pop($content_file));
-			foreach ($defaults_files as $defaults_file) {
+			foreach (array_reverse($defaults_files) as $defaults_file) {
 				include $defaults_file;
 			}
 		}

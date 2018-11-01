@@ -41,6 +41,16 @@
 			}
 			return $request;
 		}
+
+		/**
+		 * Checks if the current request starts with a specific string.
+		 * @param string $path String to check
+		 * @return bool
+		 */
+		public static function starts_with($path) {
+			$request = self::get_string();
+			return substr($request, 0, strlen($path)) == $path;
+		}
 	}
 
 ?>

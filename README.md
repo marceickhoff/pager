@@ -235,6 +235,9 @@ Request::get(); // E.g. ["index"], ["some-page"], ["sub", "some-page"], ["sub", 
 
 // Calls Request::get() an concatenates result with slashes
 Request::get_string(); // E.g. "index", "some-page", "sub/some-page", "sub/some-dir/index", etc.
+
+// Checks if the current request starts with a specific string. This is useful for creating highlighted states in navigation menus.
+Request::starts_with('sub/some-page'); // Returns boolean
 ```
 
 ## Sitemap

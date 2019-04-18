@@ -5,6 +5,7 @@
 	require_once 'system/classes/Meta.class.php';
 	require_once 'system/classes/Content.class.php';
 	require_once 'system/classes/Request.class.php';
+	require_once 'system/classes/Router.class.php';
 	require_once 'system/classes/Sitemap.class.php';
 	require_once 'system/classes/Template.class.php';
 

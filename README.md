@@ -136,7 +136,7 @@ You are encouraged to use the Config Manager for your own extensions.
 
 ## Content
 
-The Content Manager `Content` is responsible for page content.
+The Content Manager `Content` is responsible for page content. Page content is either provided by a physical page file inside the `/content/pages` directory or by a [custom route](https://github.com/marceickhoff/Pager#router).
 
 The page file will always be parsed **before** the template. This enables you to add assets and configurations and even change or disable the template from inside a page file. The output of the page file will be caught in a buffer and can be retrieved by using the `get()` method.
 
@@ -146,7 +146,7 @@ The page file will always be parsed **before** the template. This enables you to
 // Overrides the page file that will be included (has to be called before Content::get() to take effect)
 Content::set('pages/en/something-else.php');
 
-// Returns the output of the page file
+// Returns the output of a route method or page file
 Content::get(); // E.g. "<main><h1>Hello World!</h1></main>"
 
 // Get the page file based on the request and the localization
@@ -238,6 +238,41 @@ Request::get_string(); // E.g. "index", "some-page", "sub/some-page", "sub/some-
 
 // Checks if the current request starts with a specific string. This is useful for creating highlighted states in navigation menus.
 Request::starts_with('sub/some-page'); // Returns boolean
+```
+
+## Router
+
+The `Router` manages custom dynamic routes that don't require corresponding files in the `/content/pages` directory. This is useful if you want to dynamically fetch data from a database, like blog posts.
+
+You need to add your custom routes in the `routes()` method of the Router. Each route has a callable attached to it that will be called if the current request matches the custom route. The first matching route will be chosen and custom routes will be chosen over physical page files.
+
+You can create placeholders for parameters with curly brackets like `post/{id}` for example. These parameters will be sanitized and passed to the attached callable.
+
+### Examples
+
+#### Router.class.php
+```php
+include 'some/path/Example.class.php'; //See below
+abstract class Router {
+    public static function routes() {
+        return [
+            //Route with 2 paramters and anonymous function
+            'example/{param1}/{param2}' => function($p1, $p2) { echo $p1.', '.$p2; },
+            
+            //Route with 1 paramter and method (see below)
+            'example/{id}' => [Example::class, 'show']
+        ];
+    }
+}
+```
+
+#### Example.class.php
+```php
+class Example {
+    public static function show($id) {
+        echo 'The parameter is '.$id.'!';
+    }
+}
 ```
 
 ## Sitemap

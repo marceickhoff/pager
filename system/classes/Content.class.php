@@ -17,23 +17,62 @@
 		/**
 		 * Overrides the current page file.
 		 * @param string $file Page file
+		 * @deprecated Use custom routes instead.
 		 */
 		public static function set($file) {
 			self::$file = $file;
 		}
 
 		/**
-		 * Returns content.
+		 * Returns content either from file or custom route.
 		 * @return string
 		 */
 		public static function get() {
 			if (!isset(self::$content)) {
 				ob_start();
-				include self::file();
+				if (!self::custom_route()) {
+					include self::file();
+				}
 				self::$content = $content = ob_get_contents();
 				ob_end_clean();
 			}
 			return self::$content;
+		}
+
+		/**
+		 * Checks if the current request matches a custom route. If a match is found, the corresponding callable will be executed.
+		 * @return bool True if request matches custom route
+		 */
+		private static function custom_route() {
+			foreach (Router::routes() as $route => $method) {
+				$route = explode('/', trim($route, '/'));
+				$parameters = [];
+				$match = true;
+				$request = Request::get();
+				if ($request[count($request) - 1] === '') {
+					array_pop($request);
+				}
+				if (count($request) != count($route)) {
+					continue;
+				}
+				foreach ($request as $i => $request_part) {
+					if ($route[$i] == $request_part) {
+						continue;
+					}
+					else if (strlen(trim($route[$i], '{}')) == strlen($route[$i]) - 2) {
+						$parameters[] = urldecode(filter_var($request_part, FILTER_SANITIZE_URL));
+					}
+					else {
+						$match = false;
+						break;
+					}
+				}
+				if ($match) {
+					call_user_func_array($method, $parameters);
+					return true;
+				}
+			}
+			return false;
 		}
 
 		/**

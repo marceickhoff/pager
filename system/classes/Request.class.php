@@ -35,7 +35,7 @@
 				}
 				else if (!Localization::is_default() or Config::get('default_localization_redirect', true)) {
 					$request = implode('/', $request);
-					header('Location: '.(isset($_SERVER['HTTPS']) ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].Config::get('base_path', '').'/'.Localization::get().'/'.$request, true, 303);
+					Router::redirect(Localization::get().'/'.$request, 302);
 					die();
 				}
 			}

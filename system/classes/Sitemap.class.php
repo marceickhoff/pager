@@ -12,7 +12,7 @@
 		 * @param string $url (optional) URL to add (current page URL by default)
 		 * @return bool
 		 */
-		public static function update(Array $args = array(), $url = null) {
+		public static function update(array $args = array(), $url = null) {
 			if (empty($url)) {
 				$url = $_SERVER['REQUEST_URI'];
 			}

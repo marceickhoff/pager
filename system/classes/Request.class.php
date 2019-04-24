@@ -35,7 +35,7 @@
 				}
 				else if (!Localization::is_default() or Config::get('default_localization_redirect', true)) {
 					$request = implode('/', $request);
-					Router::redirect(Localization::get().'/'.$request, 302);
+					Router::redirect(Router::url(Localization::get().'/'.$request, true), 302);
 					die();
 				}
 			}

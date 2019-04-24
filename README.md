@@ -128,9 +128,9 @@ Pager currently uses the following configurations. These are made in the main co
 
 Name | Type | Default | Description
 --- | --- | --- | ---
-`base_path` | string | Relative location of `index.php` | Base path for URLs (also available via `BASE_PATH` constant)
-`default_localization` | string | `en` | Language tag in [RFC 5646 format](https://gist.github.com/msikma/8912e62ed866778ff8cd) (must exists as a directory in `pages`)
-`default_localization_redirect` | bool | `false` | Enforce use of language subdirectory in URL (e.g. `/en/`) with automatic redirect even if it's the default language
+`default_localization` | string | `en` | Language tag in [RFC 5646 format](https://gist.github.com/msikma/8912e62ed866778ff8cd) (must exists as a directory in `pages`)-
+`default_localization_redirect` | bool | `false` | Enforce use of language subdirectory in URL (e.g. `/en/`) with automatic redirect even if it's the default language.
+`custom_routes` | array | `[]` | Holds information about custom routes. Learn more about [custom routes](https://github.com/marceickhoff/Pager#router).
 
 You are encouraged to use the Config Manager for your own extensions.
 
@@ -244,27 +244,13 @@ Request::starts_with('sub/some-page'); // Returns boolean
 
 The `Router` manages custom dynamic routes that don't require corresponding files in the `/content/pages` directory. This is useful if you want to dynamically fetch data from a database, like blog posts.
 
-You need to add your custom routes in the `routes()` method of the Router. Each route has a callable attached to it that will be called if the current request matches the custom route. The first matching route will be chosen and custom routes will be chosen over physical page files.
+You can either use the default [configuration](https://github.com/marceickhoff/Pager#config) key `custom_routes` or the Router's `add()` method to define custom routes. Each route has a callable attached to it that will be called if the current request matches the custom route. The first matching route will be chosen and custom routes will be chosen over physical page files.
 
 You can create placeholders for parameters with curly brackets like `post/{id}` for example. These parameters will be sanitized and passed to the attached callable.
 
-### Examples
+The `Router` also includes a small set of utility methods. This includes `url()`, `redirect()` and `refresh()`. For examples see below.
 
-#### Router.class.php
-```php
-include 'some/path/Example.class.php'; //See below
-abstract class Router {
-    public static function routes() {
-        return [
-            //Route with 2 paramters and anonymous function
-            'example/{param1}/{param2}' => function($p1, $p2) { echo $p1.', '.$p2; },
-            
-            //Route with 1 paramter and method (see below)
-            'example/{id}' => [Example::class, 'show']
-        ];
-    }
-}
-```
+### Examples
 
 #### Example.class.php
 ```php
@@ -274,6 +260,45 @@ class Example {
     }
 }
 ```
+
+#### Defining custom routes via Config
+```php
+include 'some/path/Example.class.php';
+
+Config::set('custom_routes', [
+    //Route with 2 paramters and anonymous function
+    'example/{param1}/{param2}' => function($p1, $p2) { echo $p1.', '.$p2; },
+
+    //Route with 1 paramter and method (see below)
+    'example/{id}' => [Example::class, 'show']
+]);
+```
+
+#### Defining custom routes via method
+```php
+include 'some/path/Example.class.php';
+
+//Single route
+Router::add('example/{param1}/{param2}', function($p1, $p2) { echo $p1.', '.$p2; });
+Router::add('example/{id}', [Example::class, 'show']);
+
+//Multiple at once
+Router::add([
+    'example/{param1}/{param2}' => function($p1, $p2) { echo $p1.', '.$p2; },
+    'example/{id}' => [Example::class, 'show']
+]);
+```
+
+#### Utility methods
+```php
+Router::url('example/page'); //E.g. "your/installation/path/example/page"
+Router::url('example/page', true); //E.g. "https://example.com/your/installation/path/example/page"
+
+Router::redirect('https://example.com/target', true)); //Redirects to "https://example.com/target"
+
+Router::refresh(); //Refreshes the page
+```
+
 
 ## Sitemap
 

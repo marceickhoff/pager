@@ -140,6 +140,8 @@ The Content Manager `Content` is responsible for page content. Page content is e
 
 The page file will always be parsed **before** the template. This enables you to add assets and configurations and even change or disable the template from inside a page file. The output of the page file will be caught in a buffer and can be retrieved by using the `get()` method.
 
+You can also replace all of the previous content output by an error file using the `error()` method. For an example see below.
+
 ### Examples
 
 ```php
@@ -151,6 +153,9 @@ Content::get(); // E.g. "<main><h1>Hello World!</h1></main>"
 
 // Get the page file based on the request and the localization
 Content::file(); // E.g. "pages/en/index.php"
+
+// Replaces all previous content with error page file and terminates.
+Content::error(404); // Shows 404 error page
 ```
 
 ## Localization

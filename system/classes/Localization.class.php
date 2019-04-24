@@ -32,7 +32,10 @@
 		 */
 		public static function get() {
 			if (!empty($language = self::get_language()) and !empty($region = self::get_region())) {
-				return implode('-', [$language, $region]);
+				return implode('-', [
+					$language,
+					$region
+				]);
 			}
 			else if (!empty($language)) {
 				return $language;
@@ -67,8 +70,7 @@
 			$negotiated_localization = $supported_languages[0];
 			if (!empty($position)) {
 				foreach ($supported_languages as $code) {
-					if (isset($position[$code]) &&
-						$position[$code] == min($position)) {
+					if (isset($position[$code]) && $position[$code] == min($position)) {
 						$negotiated_localization = $code;
 					}
 				}
@@ -114,5 +116,3 @@
 			return self::$region;
 		}
 	}
-
-?>

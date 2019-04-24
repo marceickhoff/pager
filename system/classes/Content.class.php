@@ -139,9 +139,8 @@
 						die();
 				}
 				$iteration++;
-			} while (!file_exists($file));
+			}
+			while (!file_exists($file));
 			return $file;
 		}
 	}
-
-?>

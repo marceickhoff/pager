@@ -52,5 +52,3 @@
 			return substr($request, 0, strlen($path)) == $path;
 		}
 	}
-
-?>

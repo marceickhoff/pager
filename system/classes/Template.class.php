@@ -34,7 +34,8 @@
 				if (file_exists($file)) {
 					$defaults_files[] = $file;
 				}
-			} while (array_pop($content_file));
+			}
+			while (array_pop($content_file));
 			foreach (array_reverse($defaults_files) as $defaults_file) {
 				include $defaults_file;
 			}

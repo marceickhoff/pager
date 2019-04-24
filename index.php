@@ -12,4 +12,3 @@
 	include 'system/config.php';
 
 	Template::build();
-?>

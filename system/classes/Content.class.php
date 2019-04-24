@@ -143,4 +143,15 @@
 			while (!file_exists($file));
 			return $file;
 		}
+
+		/**
+		 * Replaces content with error page file and terminates.
+		 * @param int $code HTTP status code
+		 */
+		public static function error($code) {
+			ob_clean();
+			http_response_code($code);
+			include self::file();
+			die();
+		}
 	}

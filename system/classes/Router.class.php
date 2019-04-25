@@ -37,10 +37,9 @@
 		/**
 		 * Redirects the client.
 		 * @param string $target Target URL
-		 * @param int $http_response_code (optional, default: 302) HTTP response code
 		 */
-		public static function redirect($target, $http_response_code = 302) {
-			header('Location: '.$target, true, $http_response_code);
+		public static function redirect($target) {
+			header('Location: '.$target, true, 302);
 			die();
 		}
 

@@ -142,6 +142,8 @@ The page file will always be parsed **before** the template. This enables you to
 
 You can also replace all of the previous content output by an error file using the `error()` method. For an example see below.
 
+Note that any file or directory starting with an underscore will be ignored and treated like a 404 error. This is to prevent users from directly accessing default configurations files, the `_error` directory or any other file or directory that should not be directly accessed.
+
 ### Examples
 
 ```php

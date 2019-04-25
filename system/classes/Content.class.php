@@ -90,8 +90,11 @@
 			if (empty(end($request))) {
 				$request[key($request)] = 'index';
 			}
-			else if (end($request) == '_defaults' or $request[0] == '_error') {
-				http_response_code(404);
+			foreach ($request as $part) {
+				if (substr($part, 0, 1) == '_') {
+					http_response_code(404);
+					break;
+				}
 			}
 			$request = implode('/', $request);
 			do {

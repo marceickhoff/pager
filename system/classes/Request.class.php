@@ -26,7 +26,7 @@
 				$request = self::$request;
 			}
 			else {
-				$request = substr($_SERVER['REQUEST_URI'], strlen(Config::get('base_path', '')));
+				$request = substr($_SERVER['REQUEST_URI'], strlen(Router::base_path()));
 				$request = ltrim($request, '/');
 				$request = explode('/', $request);
 				if (in_array(reset($request), Localization::get_supported())) {
@@ -35,7 +35,7 @@
 				}
 				else if (!Localization::is_default() or Config::get('default_localization_redirect', true)) {
 					$request = implode('/', $request);
-					Router::redirect(Router::url(Localization::get().'/'.$request, true), 302);
+					Router::redirect(Router::url(Localization::get().'/'.$request, true));
 					die();
 				}
 			}

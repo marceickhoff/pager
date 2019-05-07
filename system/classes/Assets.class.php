@@ -25,7 +25,7 @@
 		 */
 		public static function get($location) {
 			if (array_key_exists($location, self::$assets)) {
-				return implode('\n', self::$assets[$location]);
+				return implode("\n", self::$assets[$location]);
 			}
 			return '';
 		}

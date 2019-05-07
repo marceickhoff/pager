@@ -298,10 +298,10 @@ Router::add([
 
 #### Utility methods
 ```php
-Router::url('example/page'); //E.g. "your/installation/path/example/page"
+Router::url('example/page'); //E.g. "/your/installation/path/example/page"
 Router::url('example/page', true); //E.g. "https://example.com/your/installation/path/example/page"
 
-Router::redirect('https://example.com/target', true)); //Redirects to "https://example.com/target"
+Router::redirect('https://example.com/target'); //Redirects to "https://example.com/target"
 
 Router::refresh(); //Refreshes the page
 ```

@@ -27,15 +27,15 @@
 		 * Includes relevant config files for a given content file
 		 */
 		private static function include_directory_defaults($content_file) {
-			$content_file = explode('/', pathinfo($content_file, PATHINFO_DIRNAME));
+			$parts = explode('/', pathinfo($content_file, PATHINFO_DIRNAME));
 			$files = array();
 			do {
-				$file = implode('/', $content_file).'/_directory.php';
+				$file = implode('/', $parts).'/_directory.php';
 				if (file_exists($file)) {
                     $files[] = $file;
 				}
 			}
-			while (array_pop($content_file));
+			while (array_pop($parts));
 			foreach (array_reverse($files) as $file) {
 				include $file;
 			}

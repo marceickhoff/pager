@@ -10,10 +10,10 @@
 		private static $template;
 
 		/**
-		 * Builds the template.
+		 * Initializes the template.
 		 */
-		public static function build() {
-			self::include_defaults(Content::file());
+		public static function init() {
+			self::include_directory_defaults(Content::file());
 			Content::get(); // Parse content before template
 			if (self::is_set()) {
 				include Template::file(); // Include template if set
@@ -24,20 +24,20 @@
 		}
 
 		/**
-		 * Includes relevant defaults files for a given content file
+		 * Includes relevant config files for a given content file
 		 */
-		private static function include_defaults($content_file) {
+		private static function include_directory_defaults($content_file) {
 			$content_file = explode('/', pathinfo($content_file, PATHINFO_DIRNAME));
-			$defaults_files = array();
+			$files = array();
 			do {
-				$file = implode('/', $content_file).'/_defaults.php';
+				$file = implode('/', $content_file).'/_directory.php';
 				if (file_exists($file)) {
-					$defaults_files[] = $file;
+                    $files[] = $file;
 				}
 			}
 			while (array_pop($content_file));
-			foreach (array_reverse($defaults_files) as $defaults_file) {
-				include $defaults_file;
+			foreach (array_reverse($files) as $file) {
+				include $file;
 			}
 		}
 
@@ -54,7 +54,7 @@
 		 * @return string|null Current template file or null if no template is set
 		 */
 		public static function file() {
-			return self::is_set() ? 'theme/'.self::$template.'.php' : null;
+			return self::is_set() ? __DIR__.'/../templates/'.self::$template.'.php' : null;
 		}
 
 		/**
@@ -78,7 +78,7 @@
 		 * @param string $part Template part name
 		 */
 		public static function part($part) {
-			include 'theme/'.$part.'.php';
+			include __DIR__.'/../templates/'.$part.'.php';
 		}
 	}
 

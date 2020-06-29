@@ -1,22 +1,9 @@
 #=== OPTIONS ===#
-#Options -Indexes
-#Options +FollowSymLinks -MultiViews
+Options -Indexes
+Options +FollowSymLinks -MultiViews
 
-#=== REWRITE ENGINE ===#
-RewriteEngine on
-
-#=== CREATE ROOT VARIABLE FOR RELATIVE FILE PATHS ===#
-RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
-RewriteRule ^(.*)$ - [E=ROOT:%1]
-
-#=== FILE RESTRICTIONS ===#
-RewriteCond %{REQUEST_FILENAME} !index\.php$ [NC] #Check if request is not index.php
-RewriteRule ^(content/pages|system|theme).*\.php(/?.*)$ $^ [NC] #Deny access to all PHP files in critical directories
-#RewriteRule ^.*\..*/.*$ $^ [NC] #Prevent full stops in directory names
-
-#=== SEND REQUEST TO INDEX.PHP ===#
-RewriteCond %{REQUEST_FILENAME} !-f [NC] #Check if request is not a filename
-RewriteRule .* %{ENV:ROOT}index.php [QSA,L]
+#=== REDIRECT EVERYTHING TO INDEX ===#
+FallbackResource /index.php
 
 #=== BROWSER CACHING ===#
 <IfModule mod_expires.c>

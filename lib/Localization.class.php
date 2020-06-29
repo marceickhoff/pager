@@ -85,7 +85,7 @@
 		 */
 		public static function get_supported() {
 			if (!count(self::$supported)) {
-				$directories = glob('content/pages/*');
+				$directories = glob(__DIR__.'/../content/*');
 				foreach ($directories as $directory) {
 					if (is_dir($directory)) {
 						self::$supported[] = pathinfo($directory, PATHINFO_BASENAME);

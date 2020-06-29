@@ -103,18 +103,18 @@
 					case 10:
 					case 12:
 						if ($http_response = http_response_code() != 200) {
-							$file = 'content/pages/'.$localization.'/_error/'.http_response_code().'.php';
+							$file = __DIR__.'/../content/'.$localization.'/_error/'.http_response_code().'.php';
 						}
 						break;
 					case 1:
 					case 4:
 					case 7:
-						$file = 'content/pages/'.$localization.'/'.$request.'.php';
+						$file = __DIR__.'/../content/'.$localization.'/'.$request.'.php';
 						break;
 					case 2:
 					case 5:
 					case 8:
-						$file = 'content/pages/'.$localization.'/'.$request.'/index.php';
+						$file = __DIR__.'/../content/'.$localization.'/'.$request.'/index.php';
 						break;
 					case 3:
 						if (Localization::get_region()) {
@@ -133,7 +133,7 @@
 						}
 						break;
 					case 9:
-						header('HTTP/1.1 404 Not Found', true, 404);
+                        header('HTTP/1.1 404 Not Found', true, 404);
 						break;
 					case 11:
 						header('HTTP/1.1 500 Internal Server Error', true, 500);

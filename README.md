@@ -1,4 +1,6 @@
 # Pager
+![code size](https://img.shields.io/github/languages/code-size/marceickhoff/pager)
+![license](https://img.shields.io/github/license/marceickhoff/pager)
 
 Pager is a minimal PHP framework to easily build multilingual file-based websites. No database required. Perfectly fit for smaller projects or as a base to extend from for larger ones.
 

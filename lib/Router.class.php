@@ -35,6 +35,42 @@ abstract class Router {
 	}
 
 	/**
+	 * Checks if the current request matches a custom route. If a match is found, the corresponding callable will be executed.
+	 * @return bool True if request matches custom route
+	 */
+	public static function custom_route() {
+		foreach (Router::routes() as $route => $method) {
+			$route = explode('/', trim($route, '/'));
+			$parameters = [];
+			$match = true;
+			$request = Request::get();
+			if ($request[count($request) - 1] === '') {
+				array_pop($request);
+			}
+			if (count($request) != count($route)) {
+				continue;
+			}
+			foreach ($request as $i => $request_part) {
+				if ($route[$i] == $request_part) {
+					continue;
+				}
+				elseif (strlen(trim($route[$i], '{}')) == strlen($route[$i]) - 2) {
+					$parameters[] = urldecode(filter_var($request_part, FILTER_SANITIZE_URL));
+				}
+				else {
+					$match = false;
+					break;
+				}
+			}
+			if ($match) {
+				call_user_func_array($method, $parameters);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Redirects the client.
 	 * @param string $target Target URL
 	 */

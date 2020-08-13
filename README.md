@@ -315,11 +315,6 @@ Router::redirect('https://example.com/target'); //Redirects to "https://example.
 Router::refresh(); //Refreshes the page
 ```
 
-
-### Sitemap
-
-Work in progress.
-
 ### Template
 
 The Template Manager `Template` is responsible for creating templates. A template is part of a theme and controls the arrangement of different template parts. You can have multiple templates available but only use one at a time. Templates are stored inside the `/templates` directory and can be named, pre- or suffixed however you want.

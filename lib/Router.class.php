@@ -75,7 +75,7 @@ abstract class Router {
 	 * @param string $target Target URL
 	 */
 	public static function redirect($target) {
-		header('Location: '.$target, true, 302);
+		header('Location: '.$target, true, 301);
 		die();
 	}
 

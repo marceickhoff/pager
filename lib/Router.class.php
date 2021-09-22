@@ -83,8 +83,8 @@ abstract class Router {
 	 * Refreshes the current page.
 	 */
 	public static function refresh() {
-		header("Refresh:0");
-		die();
+		header('Refresh:0');
+		die(' '); // Response must not be empty
 	}
 
 	/**

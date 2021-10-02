@@ -28,6 +28,9 @@ abstract class Request {
 		}
 		else {
 			$request = substr($_SERVER['REQUEST_URI'], strlen(Router::base_path()));
+			if ($length = strpos($request, '?')) {
+				$request = substr($request, 0, $length);
+			}
 			$request = ltrim($request, '/');
 			$request = explode('/', $request);
 			if (in_array(reset($request), Localization::get_supported())) {
